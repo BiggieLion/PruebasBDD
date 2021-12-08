@@ -72,7 +72,7 @@ a {
     margin-bottom: 10px;
     color: #000000;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .descripcion {
@@ -129,4 +129,55 @@ a {
     .selectbox {
         width: 100%;
     }
+}
+
+/*Diseño para imagenes de consulta 1*/
+.con1 {
+    background: #f4f4f7;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+.cardc1 {
+    width: 300px;
+    height: 225px;
+    background: rgb(0, 87, 128);
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .16);
+}
+
+.cardc1 img {
+    position: absolute;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.imagen-c1-content {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    padding: 0.4em 1.5em;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    transform: scale(0.9);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, .164);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .144);
+    overflow: hidden;
+    transition: all .4s;
+}
+
+.imagen-c1-content p {
+    font-size: 0.8em;
+}
+
+.cardc1:hover .imagen-c1-content {
+    height: 150px;
 }

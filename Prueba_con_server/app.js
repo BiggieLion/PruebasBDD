@@ -4,23 +4,16 @@ const PORT = 3000;
 
 APP.set('view engine', 'ejs'); //Configuramos el motor de plantillas
 APP.set('views', __dirname+'/views');//Configuramos donde estaran las vistas
-
 APP.use(EXPRESS.static(__dirname + '/public')); //Configuramos el middleware para el inicio
 
-
-APP.listen(PORT, () => {
+APP.listen(PORT, () => { //Se levanta el servidor
     console.log('Servidor levantado en el puerto', PORT);
 });
 
-APP.get('/', (req, res) => {
-    res.render("index", {titulo : "Titulo dinamico"});
-});
 
-APP.get('/servicios', (req, res) => {
-    res.render("servicios", {mensaje : "Mensaje dinamico de servicio"});
-});
+APP.use('/', require('./routes/routes')); //Se mueven las rutas a un archivo routes y se configura middleware
 
-APP.use((req, res, next) => {
+APP.use((req, res, next) => {       
     res.status(404).render("404", {
         titulo : "404", 
         descripcion : "Error, no se encuentra la pagina solicitada"
