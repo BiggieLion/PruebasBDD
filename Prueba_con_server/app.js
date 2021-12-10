@@ -1,13 +1,14 @@
 const EXPRESS = require('express');
 const APP = EXPRESS();
-const PORT = 3000;
+
+let puerto = process.env.PORT || 3000;
 
 APP.set('view engine', 'ejs'); //Configuramos el motor de plantillas
 APP.set('views', __dirname+'/views');//Configuramos donde estaran las vistas
 APP.use(EXPRESS.static(__dirname + '/public')); //Configuramos el middleware para el inicio
 
-APP.listen(PORT, () => { //Se levanta el servidor
-    console.log('Servidor levantado en el puerto', PORT);
+APP.listen(puerto, () => { //Se levanta el servidor
+    console.log('Servidor levantado en el puerto', puerto);
 });
 
 

@@ -2,8 +2,10 @@
 
 --1. Obtener los 3 primeros empleados que han tenido las mayores ventas totales el año pasado.
 --(tablas implicadas person, empleyee, salesPerson[añadir a grafo])
+USE Fragmento1AW;
+GO
 
-create procedure Top3_vendedores_mayores_ventas_LastYear_por_fragmento @nom_fragmento varchar(100) as
+ALTER procedure Top3_vendedores_mayores_ventas_LastYear_por_fragmento @nom_fragmento varchar(100) as
 begin
 	declare @servidor nvarchar(100);
 	declare @sql nvarchar(1000);
@@ -22,9 +24,9 @@ begin
 end
 Go
 
-create procedure Top3_vendedores_mayores_ventas_LastYear as
+ALTER procedure Top3_vendedores_mayores_ventas_LastYear as
 begin
-	
+	drop table if exists Top3_Vendedores_mas_ventas_LastYear;
 	create table Top3_Vendedores_mas_ventas_LastYear(
 		FirstName nvarchar(50),
 		MiddleName nvarchar(50),
@@ -57,7 +59,7 @@ GO
 
 
 --2. La cantidad de ventas totales por territorio. 
-create procedure Contando_Ventas_por_territorio @nom_fragmento varchar(100) as
+ALTER procedure Contando_Ventas_por_territorio @nom_fragmento varchar(100) as
 begin
 	declare @servidor nvarchar(100);
 	declare @sql nvarchar(1000);
@@ -76,9 +78,9 @@ begin
 end
 Go
 
-create procedure Total_ventas_por_territorio as
+ALTER procedure Total_ventas_por_territorio as
 begin
-	
+	drop table if exists Cuentas_por_Territorio;
 	create table Cuentas_por_Territorio(
 		Territorio nvarchar(50),
 		Ventas_Totales int
@@ -109,7 +111,7 @@ go
 
 
 --3. Contar las órdenes de venta por tipo de envío
-create procedure Contando_Ventas_por_metodo_envio @nom_fragmento varchar(100) as
+ALTER procedure Contando_Ventas_por_metodo_envio @nom_fragmento varchar(100) as
 begin
 	declare @servidor nvarchar(100);
 	declare @sql nvarchar(1000);
@@ -128,9 +130,9 @@ begin
 end
 Go
 
-create procedure Total_ventas_por_metodo_envio as
+ALTER procedure Total_ventas_por_metodo_envio as
 begin
-	
+	drop table if exists Cuentas_por_metodo_envio;
 	create table Cuentas_por_metodo_envio(
 		Metodo_envio nvarchar(50),
 		Ventas_Totales int
@@ -161,7 +163,7 @@ go
 
 
 --4. Eliminar la última orden de venta registrada
-create procedure Eliminacion_ultima_orden_venta as
+ALTER procedure Eliminacion_ultima_orden_venta as
 begin
 	declare @SalesOrderID_MAX int;
 	declare @Fragmento nvarchar(100);
@@ -211,11 +213,12 @@ go
 
 
 --5. Listar los vendedores asignados a cada Tienda cliente 
-create procedure Lista_Tiendas_Vendedores as
+ALTER procedure Lista_Tiendas_Vendedores as
 begin
 	declare @sql nvarchar(1000);
 	declare @servidor nvarchar(100);
 
+	drop table if exists Tienda_Vendedores;
 	create table Tienda_Vendedores(
 		TIENDA nvarchar(50),
 		FirstName_Vendedor nvarchar(50),
@@ -257,7 +260,8 @@ GO
 --6. Obtener la cantidad de órdenes de venta por vendedor 
 alter procedure Total_ventas_por_vendedor as
 begin
-
+	
+	drop table if exists Cuentas_por_Vendedor;
 	create table Cuentas_por_Vendedor(
 		FirstName_Vendedor nvarchar(50),
 		MiddleName_Vendedor nvarchar(50),
@@ -321,17 +325,3 @@ group by ReasonType
 select [name], count(*) from [ConnectionFragmeto1a2].Fragmento2AW.dbo.SalesReason SR
 join [ConnectionFragmeto1a2].Fragmento2AW.dbo.SalesOrderHeaderSalesReason SOHSR on SR.SalesReasonID = SOHSR.SalesReasonID
 group by [name]
-
-
-
-
---Creación de Índices no agrupados
-create nonclustered index IX_Nonclustered_Person_CompleteName
-on dbo.Person (BusinessEntityID)
-include (FirstName, MiddleName, LastName)
-
-create nonclustered index IX_Nonclustered_SalesPerson_SalesLY
-on SalesPerson (BusinessEntityID)
-include (SalesLastYear)
-
-drop index SalesPerson.[IX_Nonclustered_SalesPerson_SalesLY]

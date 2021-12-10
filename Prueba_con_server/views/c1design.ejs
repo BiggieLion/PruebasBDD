@@ -1,27 +1,49 @@
-<%- include("templates/cabecera.ejs", {tituloPagina: "Consulta 1"}) %> 
+<%- include("templates/cabecera.ejs", {tituloPagina: "Consulta 1"}) %>
 <div class="con1">
     <div class="cardc1">
-        <img src="/images/empleado1.jpg" alt="">
+        <img src="/images/empleado1.jpg" alt="" />
         <div class="imagen-c1-content">
-            <h2>Alberto Jesus Morales Velez</h2>
-            <p>Este vendendor cuenta con Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, possimus doloribus, magni qui delectus minus quis tempora ipsum beatae porro optio deleniti veniam repudiandae. Odio architecto illum provident quaerat? Asperiores.</p>
+        <h2>
+            <%= vendedores.recordset[0].FirstName + " " +
+            vendedores.recordset[0].MiddleName + " " +
+            vendedores.recordset[0].LastName%>
+        </h2>
+        <p>
+            Conozca a nuestro vendedor estrella con una cantidad de ventas totales
+            de $<%= vendedores.recordset[0].SalesLastYear %> el año pasado
+        </p>
         </div>
     </div>
 
     <div class="cardc1">
-        <img src="/images/empleado1.jpg" alt="">
+        <img src="/images/empleado2.jpg" alt="" />
         <div class="imagen-c1-content">
-            <h2>Alberto Jesus Morales Velez</h2>
-            <p>Este vendendor cuenta con Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, possimus doloribus, magni qui delectus minus quis tempora ipsum beatae porro optio deleniti veniam repudiandae. Odio architecto illum provident quaerat? Asperiores.</p>
+        <h2>
+            <%= vendedores.recordset[1].FirstName + " " +
+            vendedores.recordset[1].MiddleName + " " +
+            vendedores.recordset[1].LastName%>
+        </h2>
+        <p>
+            Nuestra segunda mejor vendedora con ventas totales de $<%=
+            vendedores.recordset[1].SalesLastYear %> el año pasado.
+        </p>
         </div>
     </div>
 
     <div class="cardc1">
-        <img src="/images/empleado1.jpg" alt="">
+        <img src="/images/empleado3.jpg" alt="" />
         <div class="imagen-c1-content">
-            <h2>Alberto Jesus Morales Velez</h2>
-            <p>Este vendendor cuenta con Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, possimus doloribus, magni qui delectus minus quis tempora ipsum beatae porro optio deleniti veniam repudiandae. Odio architecto illum provident quaerat? Asperiores.</p>
+        <h2>
+            <%= vendedores.recordset[2].FirstName + " " +
+            vendedores.recordset[2].MiddleName + " " +
+            vendedores.recordset[2].LastName%>
+        </h2>
+        <p>
+            Por ultimo pero no menos importante nuestro tercer mejor vendedor con
+            ventas totales de $<%= vendedores.recordset[2].SalesLastYear %> el año
+            pasado.
+        </p>
         </div>
     </div>
 </div>
-<%- include("templates/footer.ejs") %> 
+<%- include("templates/footer.ejs") %>

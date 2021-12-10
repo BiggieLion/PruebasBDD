@@ -61,6 +61,7 @@ a {
 
 .barranav > .barra-superior > .item-barra-superior > .barra-inferior {
     top: 100%;
+    z-index: 20;
 }
 
 .barranav .item-barra-superior:hover .item-barra-inferior {
@@ -206,6 +207,7 @@ a {
 
 .cardc1 img {
     position: absolute;
+    min-height: 100%;
     width: 100%;
     border-radius: 10px;
 }
@@ -236,3 +238,32 @@ a {
     height: 150px;
 }
 
+/*Diseño para las tablas*/
+.tabla-consulta-2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+table {
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px #E1E5EE;
+    background-color: #FFFFFF;
+    text-align: left;
+    overflow: hidden;
+}
+
+thead {
+    box-shadow: 0 5px 10px #E1E5EE;
+}
+
+th {
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+}
+
+td {
+    padding: 1rem 2rem;
+}

@@ -1,0 +1,21 @@
+<%- include("templates/cabecera.ejs", {tituloPagina: "Consulta 3"}) %>
+    <div class="tabla-consulta-2">
+        <table>
+            <thead>
+                <tr>
+                    <th>Total de ordenes de venta</th>
+                    <th>Metodos de envío</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <% for(let i = 0; i < envio.recordset.length; i++){%>
+                <tr>
+                    <td><%= envio.recordset[i].Metodo_envio %></td>
+                    <td><%= envio.recordset[i].Ventas_Totales%> ventas</td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+<%- include("templates/footer.ejs") %> 

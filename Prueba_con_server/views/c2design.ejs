@@ -1,0 +1,21 @@
+<%- include("templates/cabecera.ejs", {tituloPagina: "Consulta 2"}) %>
+    <div class="tabla-consulta-2">
+        <table>
+            <thead>
+                <tr>
+                    <th>Territorio</th>
+                    <th>Ventas totales</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <% for(let i = 0; i < territorios.recordset.length; i++){%>
+                <tr>
+                    <td><%= territorios.recordset[i].Territorio %></td>
+                    <td><%= territorios.recordset[i].Ventas_Totales%> ventas</td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+<%- include("templates/footer.ejs") %> 
