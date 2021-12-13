@@ -1,6 +1,8 @@
+import { config } from "dotenv";
 const EXPRESS = require('express');
 const APP = EXPRESS();
 
+config();
 let puerto = process.env.PORT || 3000;
 
 APP.set('view engine', 'ejs'); //Configuramos el motor de plantillas

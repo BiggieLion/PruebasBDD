@@ -1,12 +1,8 @@
 const EXPRESS = require("express");
 const ROUTER = EXPRESS.Router();
-import { CONSULTA1 } from "../controllers/consultas";
-import { CONSULTA2 } from "../controllers/consultas";
-import { CONSULTA3 } from "../controllers/consultas";
-
-//Ruta root
+import * as CONSULTAS from '../controllers/consultas'
 ROUTER.get("/", (req, res) => {
-    res.render("index", { titulo: "Titulo dinamico" });
+    res.render("Vmain", { titulo: "Titulo dinamico" });
 });
 
 //Ruta de prueba servicios
