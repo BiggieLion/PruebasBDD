@@ -1,0 +1,22 @@
+<%- include("templates/cabecera.ejs", {tituloPagina: "Consulta 9"}) %>
+   <section class="fondo"></section>
+   <div class="tabla-consulta-2">
+        <table>
+            <thead>
+                <tr>
+                    <th>Razon del cliente</th>
+                    <th>Ordenes de venta totales</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <% for(let i = 0; i < ReasonTypes.recordset.length; i++){%>
+                <tr>
+                    <td> <%= SalesReason.recordset[1]P.FirstName + " " %></td>
+                    <td><%= ReasonTypes.recordset[i].ReasonType%> ventas</td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+<%- include("templates/footer.ejs") %>
