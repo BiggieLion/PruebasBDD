@@ -305,10 +305,10 @@ go
 
 --7. Obtener los clientes que han comprado asociados a que están recibiendo publicidad por correo electrónico y su correspondiente total de
 --ordenes de venta 
-select P.FirstName, P.MiddleName, P.LastName, count(*) from [ConnectionFragmeto2a1].Fragmento1AW.dbo.SalesOrderHeader SOH
-join [ConnectionFragmeto2a1].Fragmento1AW.dbo.Customer C on SOH.CustomerID = C.CustomerID
-join [ConnectionFragmeto2a1].Fragmento1AW.dbo.Person P on C.PersonID = P.BusinessEntityID
-group by P.FirstName, P.MiddleName, P.LastName
+SELECT P.FirstName, P.MiddleName, P.LastName, COUNT(*) FROM [ConnectionFragmeto2a1].Fragmento1AW.dbo.SalesOrderHeader SOH
+JOIN [ConnectionFragmeto2a1].Fragmento1AW.dbo.Customer C ON SOH.CustomerID = C.CustomerID
+JOIN [ConnectionFragmeto2a1].Fragmento1AW.dbo.Person P on C.PersonID = P.BusinessEntityID
+GROUP BY P.FirstName, P.MiddleName, P.LastName, cliente;
 
 
 

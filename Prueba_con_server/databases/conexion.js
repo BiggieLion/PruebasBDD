@@ -1,10 +1,10 @@
 import sql from 'mssql'
 
 const configuracionBD = {
-    user: 'sa', 
-    password: '%=8585FF0506%',
-    server: 'localhost',
-    database: 'Fragmento1AW',
+    user: process.env.USER, 
+    password: process.env.PASSWORD,
+    server: process.env.SERVER,
+    database: process.env.DB,
     options: {
         encrypt: true,
         trustServerCertificate: true,
@@ -16,6 +16,6 @@ export async function ConexionBDD() {
         const conexion = await sql.connect(configuracionBD);
         return conexion;
     } catch (error) {
-        console.error(error);
+        console.log(error)
     }
 } 
