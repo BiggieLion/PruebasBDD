@@ -15,7 +15,6 @@ APP.listen(puerto, () => { //Se levanta el servidor
 
 
 APP.use('/', require('./routes/routes')); //Se mueven las rutas a un archivo routes y se configura middleware
-
 APP.use((req, res, next) => {       
     res.status(404).render("404", {
         titulo : "404", 
