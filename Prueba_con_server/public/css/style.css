@@ -9,6 +9,9 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+div{
+    background-image: linear-gradient(to bottom right, #b0b1df, #b1b2b6);
+}
 a {
     text-decoration: none;
 }
