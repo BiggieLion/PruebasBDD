@@ -20,7 +20,7 @@ ROUTER.get("/consulta2", CONSULTAS.CONSULTA2);
 ROUTER.get("/consulta3", CONSULTAS.CONSULTA3);
 
 //Ruta para consulta 4
-ROUTER.get("/consulta4", CONSULTAS.CONSULTA3);
+ROUTER.get("/consulta4", CONSULTAS.CONSULTA4);
 
 //Ruta para consulta 5
 ROUTER.get("/consulta5", CONSULTAS.CONSULTA5);

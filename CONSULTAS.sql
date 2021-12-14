@@ -163,51 +163,38 @@ go
 
 
 --4. Eliminar la última orden de venta registrada
-ALTER procedure Eliminacion_ultima_orden_venta as
+alter procedure Eliminacion_ultima_orden_venta as
 begin
-	declare @SalesOrderID_MAX int;
-	declare @Fragmento nvarchar(100);
-	declare @Parametros nvarchar(1000);
-	declare @sql nvarchar(1000);
-	declare @servidor_volatil nvarchar(100);
-	declare @servidor nvarchar(100);
-	set @SalesOrderID_MAX = 0;
+    declare @SalesOrderID_MAX1 int;
+    declare @SalesOrderID_MAX2 int;
+    declare @Fragmento nvarchar(100);
+    declare @Parametros nvarchar(1000);
+    declare @sql nvarchar(1000);
+    declare @servidor_volatil nvarchar(100);
+    declare @servidor nvarchar(100);
 
-	-- cursor ----------------------------------------------------
-	DECLARE @nom_fragmento AS nvarchar(100)
-	DECLARE fragmento CURSOR FOR SELECT bd FROM diccionario_distribucion
-	OPEN fragmento
-	FETCH NEXT FROM fragmento INTO @nom_fragmento
-	WHILE @@fetch_status = 0
-	BEGIN
-		select @servidor_volatil = servidor
-		from diccionario_distribucion where bd = @nom_fragmento;
+    set @sql = 'select @SalesOrderID_MAX2 = max(SalesOrderID) from [ConnectionFragmeto1a2].Fragmento2AW.dbo.SalesOrderHeader;
+                select @SalesOrderID_MAX1 = max(SalesOrderID) from [ConnectionFragmeto2a1].Fragmento1AW.dbo.SalesOrderHeader';
+    set @Parametros = '@SalesOrderID_MAX1 int OUTPUT, @SalesOrderID_MAX2 int OUTPUT';
+    exec sp_executesql @sql,@Parametros,@SalesOrderID_MAX1 = @SalesOrderID_MAX1 output, @SalesOrderID_MAX2 = @SalesOrderID_MAX2 output;
+		IF(@SalesOrderID_MAX1 > @SalesOrderID_MAX2)
+		begin 
+			select * from [ConnectionFragmeto2a1].Fragmento1AW.dbo.SalesOrderHeader where SalesOrderID = @SalesOrderID_MAX1
+			select count(*) from [ConnectionFragmeto2a1].Fragmento1AW.dbo.SalesOrderHeader
+            delete from [ConnectionFragmeto2a1].Fragmento1AW.dbo.SalesOrderHeader where SalesOrderID = @SalesOrderID_MAX1
+			select count(*) from [ConnectionFragmeto2a1].Fragmento1AW.dbo.SalesOrderHeader
+		end
 
-		set @sql = 'if ((select max(SalesOrderID) from ' + @servidor_volatil + '.' + @nom_fragmento + '.dbo.SalesOrderHeader) > ' + cast(@SalesOrderID_MAX as nvarchar(10)) + ')
-						begin
-							select @SalesOrderID_MAX = max(SalesOrderID) from ' + @servidor_volatil + '.' + @nom_fragmento + '.dbo.SalesOrderHeader
-							set @servidor = ' + @servidor_volatil + '
-							set @Fragmento = ' + @nom_fragmento + '
-						end
-					else
-					 begin
-						set @SalesOrderID_MAX = ' + cast(@SalesOrderID_MAX as nvarchar(10)) + '
-						set @servidor = ' + @servidor + '
-						set @Fragmento = ' + @Fragmento + '
-					 end'
-		set @Parametros = '@servidor nvarchar(100) OUTPUT, @SalesOrderID_MAX int OUTPUT, @Fragmento nvarchar(100) OUTPUT';
-		exec sp_executesql @sql,@Parametros,@servidor = @servidor output, @SalesOrderID_MAX = @SalesOrderID_MAX output,
-			@Fragmento = @Fragmento output;
-
-		FETCH NEXT FROM fragmento INTO @nom_fragmento
-	END
-	CLOSE fragmento
-	DEALLOCATE fragmento
-
-	set @sql = 'delete from ' + @servidor + '.' + @Fragmento + '.dbo.SalesOrderHeader where SalesOrderID = ' + cast(@SalesOrderID_MAX as nvarchar(10))
-	exec sp_executesql @sql;
-	
+		ELSE 
+		begin
+			select * from [ConnectionFragmeto1a2].Fragmento2AW.dbo.SalesOrderHeader where SalesOrderID = @SalesOrderID_MAX2
+			select count(*) from [ConnectionFragmeto1a2].Fragmento2AW.dbo.SalesOrderHeader
+            delete from [ConnectionFragmeto1a2].Fragmento2AW.dbo.SalesOrderHeader where SalesOrderID = @SalesOrderID_MAX2
+			select count(*) from [ConnectionFragmeto1a2].Fragmento2AW.dbo.SalesOrderHeader
+		end
 end
+go
+exec Eliminacion_ultima_orden_venta
 go
 
 
@@ -258,7 +245,7 @@ GO
 
 
 --6. Obtener la cantidad de órdenes de venta por vendedor 
-alter procedure Total_ventas_por_vendedor as
+ALTER procedure Total_ventas_por_vendedor as
 begin
 	
 	drop table if exists Cuentas_por_Vendedor;
@@ -291,7 +278,7 @@ begin
 	on SOH.SalesPersonID = P.BusinessEntityID
 	GROUP BY FirstName, MiddleName, LastName
 
-	select FirstName_Vendedor, MiddleName_Vendedor, LastName_Vendedor, sum(Ventas_Totales) from Cuentas_por_Vendedor
+	select FirstName_Vendedor, MiddleName_Vendedor, LastName_Vendedor, sum(Ventas_Totales) AS Total from Cuentas_por_Vendedor
 	group by FirstName_Vendedor, MiddleName_Vendedor, LastName_Vendedor
 	
 	drop table Cuentas_por_Vendedor
@@ -308,7 +295,7 @@ go
 SELECT P.FirstName, P.MiddleName, P.LastName, COUNT(*) FROM [ConnectionFragmeto2a1].Fragmento1AW.dbo.SalesOrderHeader SOH
 JOIN [ConnectionFragmeto2a1].Fragmento1AW.dbo.Customer C ON SOH.CustomerID = C.CustomerID
 JOIN [ConnectionFragmeto2a1].Fragmento1AW.dbo.Person P on C.PersonID = P.BusinessEntityID
-GROUP BY P.FirstName, P.MiddleName, P.LastName, cliente;
+GROUP BY P.FirstName, P.MiddleName, P.LastName;
 
 
 

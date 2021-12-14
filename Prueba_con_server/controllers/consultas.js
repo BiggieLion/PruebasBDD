@@ -18,6 +18,12 @@ export const CONSULTA3 = async (req, res) => {
     res.render("c3design", {envio: resultado});
 }
 
+export const CONSULTA4 = async (req, res) => {
+    const conexion = await ConexionBDD();
+    const resultado = await conexion.request().query("EXEC Eliminacion_ultima_orden_venta");
+    res.json(resultado);
+}
+
 export const CONSULTA5 = async (req, res) => {
     const conexion = await ConexionBDD();
     const resultado = await conexion.request().query("EXEC Lista_Tiendas_Vendedores");

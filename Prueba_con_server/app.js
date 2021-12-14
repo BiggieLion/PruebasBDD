@@ -19,6 +19,5 @@ APP.use('/', require('./routes/routes')); //Se mueven las rutas a un archivo rou
 APP.use((req, res, next) => {       
     res.status(404).render("404", {
         titulo : "404", 
-        descripcion : "Error, no se encuentra la pagina solicitada"
     })//Middleware para el 404 SIEMPRE VA AL FINAL DE LAS RUTAS
 });
