@@ -1,13 +1,24 @@
 const EXPRESS = require("express");
 const ROUTER = EXPRESS.Router();
 import * as CONSULTAS from '../controllers/consultas'
+const path = require("path");
+const fs = require("fs");
+
+const dirPath = path.join(__dirname, "../public/downloads");
+const files = fs.readdirSync(dirPath).map(name => {
+    return {
+        name: path.basename(name, ".pdf"),
+        url: '/downloads/${name}'
+    };
+});
+
 ROUTER.get("/", (req, res) => {
     res.render("Vmain");
 });
 
 //Ruta de prueba servicios
-ROUTER.get("/servicios", (req, res) => {
-    res.render("servicios");
+ROUTER.get("/propuesta", (req, res) => {
+    res.render("lector", {files});
 });
 
 //Ruta para la consulta 1
