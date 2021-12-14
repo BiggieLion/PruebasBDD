@@ -18,7 +18,11 @@ ROUTER.get("/", (req, res) => {
 
 //Ruta de prueba servicios
 ROUTER.get("/propuesta", (req, res) => {
-    res.render("lector", {files});
+    res.render("lector");
+});
+
+ROUTER.get("/sobre-nosotros", (req, res) => {
+    res.render("about");
 });
 
 //Ruta para la consulta 1

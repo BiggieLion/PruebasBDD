@@ -5,16 +5,17 @@
 }
 
 body {
-    background-image: linear-gradient(to bottom right, #b0b1df, #b1b2b6);
+    background-image: linear-gradient(to right, #b0b1df, #aca6d6, #a89ccd, #a591c4, #a286ba);
     font-family: 'Open Sans', sans-serif;
 }
 
 div{
-    background-image: linear-gradient(to bottom right, #b0b1df, #b1b2b6);
+    background-image: linear-gradient(to right, #b0b1df, #aca6d6, #a89ccd, #a591c4, #a286ba)
 }
 a {
     text-decoration: none;
 }
+
 /*Estilo para la barra de navegacion*/
 /*General*/
 .barra-navegacion {
@@ -81,8 +82,8 @@ a {
 
 /*Diseño para la pagina de inicio*/
 .inicio {
-    height: 100vh;
-    background-image: linear-gradient(to top, rgba(251, 194, 235, 0.486) 0%, hsla(218, 68%, 79%, 0.514) 100%), url('/images/bc3.jpg');
+    height: 95vh;
+    background-image: linear-gradient(to top, rgba(251, 194, 235, 0.486) 0%, hsla(218, 68%, 79%, 0.514) 100%), url('/images/bc.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -99,13 +100,18 @@ a {
 }
 
 .titulo {
-    font-size: 60px;
-    margin-bottom: 15px;
-    
+    padding: 0;
+    height: 100%;
+    font-size: 50px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 /*Diseño para imagenes de consulta 1*/
 .con1 {
-    background: #f4f4f7;
+    background-image: linear-gradient(to right, #b0b1df, #aca6d6, #a89ccd, #a591c4, #a286ba);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -176,7 +182,7 @@ table {
     box-shadow: 0 5px 10px #E1E5EE;
     background-color: #FFFFFF;
     text-align: left;
-    overflow: hidden;
+    overflow: auto;
 }
 
 thead {
@@ -221,3 +227,10 @@ td {
     top: 0;
 }
 
+/*Codigo para lector*/
+.lector-pdf {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

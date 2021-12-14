@@ -1,0 +1,42 @@
+<%- include("templates/cabecera.ejs", {tituloPagina: "Consulta 4"}) %>
+    <h1 class="titulo">Datos de la ultima venta completada</h1>
+    <div class="tabla-consulta-2">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Numero de orden</th>
+                    <th>Fecha de orden</th>
+                    <th>Fecha de vencimiento</th>
+                    <th>Fecha de envío</th>
+                    <th>Status</th>
+                    <th>Numero de cuenta</th>
+                    <th>ID de cliente</th>
+                    <th>SubTotal</th>
+                    <th>Impuestos</th>
+                    <th>Gastos de envío</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <% for(let i = 0; i < envio.recordset.length; i++){%>
+                <tr>
+                    <td><%= envio.recordset[i].SalesOrderID %></td>
+                    <td><%= envio.recordset[i].SalesOrderNumber %></td>
+                    <td><%= envio.recordset[i].OrderDate %></td>
+                    <td><%= envio.recordset[i].DueDate %></td>
+                    <td><%= envio.recordset[i].ShipDate %></td>
+                    <td><%= envio.recordset[i].Status %></td>
+                    <td><%= envio.recordset[i].AccountNumber %></td>
+                    <td><%= envio.recordset[i].CustomerID %></td>
+                    <td>$<%= envio.recordset[i].SubTotal %></td>
+                    <td>$<%= envio.recordset[i].TaxAmt %></td>
+                    <td>$<%= envio.recordset[i].Freight %></td>
+                    <td>$<%= envio.recordset[i].TotalDue %></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+<%- include("templates/footer.ejs") %> 
