@@ -217,10 +217,3 @@ td {
     top: 0;
 }
 
-.fondo{
-    width: 100%;
-     linear-gradient(to bottom right, #b0b1df, #b1b2b6)
-    position: relative;
-    height: 330px;
-    display: flex;
-}
