@@ -1,0 +1,30 @@
+//Creacion de un cliente API REST
+//Creamos las variables
+@consulta1 = http://localhost:4000/consulta1
+@consulta2 = http://localhost:4000/consulta2
+@consulta3 = http://localhost:4000/consulta3
+@consulta4 = http://localhost:4000/consulta4
+@consulta5 = http://localhost:4000/consulta5
+@consulta6 = http://localhost:4000/consulta6
+@consulta7 = http://localhost:4000/consulta7
+@consulta8 = http://localhost:4000/consulta8
+@consulta9 = http://localhost:4000/consulta9
+
+//Prueba de ejecucion de API
+GET {{consulta1}}
+
+GET {{consulta2}}
+
+GET {{consulta3}}
+
+GET {{consulta4}}
+
+GET {{consulta5}}
+
+GET {{consulta6}}
+
+GET {{consulta7}}
+
+GET {{consulta8}}
+
+GET {{consulta9}}
